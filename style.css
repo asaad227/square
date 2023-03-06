@@ -1,0 +1,28 @@
+.mainDiv{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+#chessboard{
+    display: grid;
+    margin: 5px;
+    width: 300px;
+    height: 300px;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 1px;
+}
+.btn-div{
+    
+    width: 50px;
+    margin-left: 100px;
+    margin-top: 100px;
+    margin-left: 100px;
+
+
+}
+
+
+
