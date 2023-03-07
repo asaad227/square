@@ -14,8 +14,8 @@ var result = []
 var result2 = []
 var leaderBoard = [];
 var leaderBoard2 = [];
-var score;
-var score2;
+var score = 0;
+var score2 = 0;
 var interId;
 var interId2;
 
@@ -76,7 +76,7 @@ function cheeseBoard(){
           // set the background color of the square based on its position
           if ((row + col) % 2 === 0) {
             //sending color to the result 
-              result.push(colors[happy])
+            result.push(colors[happy])
             square.style.backgroundColor = colors[happy];
             square.innerText = `${nameInput.value[0].toUpperCase()}`
           } 
@@ -85,6 +85,7 @@ function cheeseBoard(){
           }
       }      
       }
+  
 }
 
 function cheeseBoard1(){
@@ -97,7 +98,7 @@ function cheeseBoard1(){
   }
  
     let happy = Math.ceil(Math.random() * 3);
-    const colors = ["red", "yellow", "blue", "green"]
+    const colors = ["red", "green", "yellow", "blue"]
     for (let row = 0; row < 1; row++) {
       if(result2.length === Number(numberOfRound.slice(7))){
         clearInterval(interId2)
@@ -121,30 +122,35 @@ function cheeseBoard1(){
       }
       
     }
+ 
 }
 
 function gameScore1(){
+  const red = "red";
+  const green = "green";
+  const yellow = "yellow";
+  const blue = "blue";
   for(let i = 0; i < result.length; i++){
-    if(result[i] === "red"){
+    if(result[i] === red){
       leaderBoard.push(10)
     }
-    if(result[i] === "green"){
+    if(result[i] === green){
       leaderBoard.push(20)
     }
 
-    if(result[i] === "yellow"){
+    if(result[i] === yellow){
       leaderBoard.push(30)
     }
-    if(result[i] === "blue"){
+    if(result[i] === blue){
       leaderBoard.push(40)
     }
   }
-  score = leaderBoard.reduce((acc, curr)=> acc + curr, 0);
+  score = leaderBoard.reduce((acc, curr)=> acc + curr,0);
+  console.log(score)
   player1S.innerHTML= `Player one score: ${score}`
-  console.log(leaderBoard2)
 }
 function gameScore2(){
-  for(let i = 0; i < result2.length; i++){
+  for(let i = 0; i < result.length; i++){
     if(result2[i] === "red"){
       leaderBoard2.push(10)
     }
@@ -159,8 +165,8 @@ function gameScore2(){
       leaderBoard2.push(40)
     }
   }
-  score2 = leaderBoard2.reduce((acc, curr)=> acc + curr, 0);
-  players2S.innerHTML = `Player two score: ${score2}`
+  score2 = leaderBoard2.reduce((acc, curr)=> acc + curr,0);
+  players2S.innerHTML= `Player two score: ${score2}`
   console.log(leaderBoard2)
 }
 function leader(){
@@ -170,9 +176,14 @@ function leader(){
   gameScore2()
     if(score > score2){
     alert(  playerWin.innerHTML = `Congratulation you are the Winner: ${str[0].toUpperCase()+str.slice(1)}`)
-    }else{
+    }
+    if(score2 > score){
      alert( playerWin.innerHTML = `Congratulation you are the Winner: ${str2[0].toUpperCase()+str2.slice(1)}`)
-    }   
+    }
+    
+    if(score === score2){
+      alert("Game tie");
+    }
 }
 
 
@@ -183,7 +194,6 @@ function reset(){
   player1S.innerHTML= `Player one score: 0`
   players2S.innerHTML= `Player two score: 0`;
   round.innerHTML = "Round: 1"
-  leader.innerHTML = "";
   container.innerHTML = "";
   document.querySelector(".nameInput").value = "";
   document.querySelector(".nameInput2").value = "";
