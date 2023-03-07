@@ -23,7 +23,7 @@ function roundEnter(){
   round.innerHTML = `Round: ${roundIn.value}`
   roundIn.value = ""
   // alert the user to enter there name 
-  alert("Player1 please enter your name!")
+  alert("Player1 please enter your name and hit play button!")
 }
 
 function submitName(){
@@ -175,10 +175,10 @@ function leader(){
   gameScore1()
   gameScore2()
     if(score > score2){
-    alert(  playerWin.innerHTML = `Congratulation you are the Winner: ${str[0].toUpperCase()+str.slice(1)}`)
+    alert(  playerWin.innerHTML = `Congratulation you are the Winner 🏆: ${str[0].toUpperCase()+str.slice(1)}`)
     }
     if(score2 > score){
-     alert( playerWin.innerHTML = `Congratulation you are the Winner: ${str2[0].toUpperCase()+str2.slice(1)}`)
+     alert( playerWin.innerHTML = `Congratulation you are the Winner 🏆: ${str2[0].toUpperCase()+str2.slice(1)}`)
     }
     
     if(score === score2){
