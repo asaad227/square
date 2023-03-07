@@ -120,40 +120,42 @@ function cheeseBoard1(){
 function gameScore1(){
   for(let i = 0; i < result.length; i++){
     if(result[i] === "red"){
-      leaderBoard.push(-20)
+      leaderBoard.push(10)
     }
     if(result[i] === "green"){
-      leaderBoard.push(40)
+      leaderBoard.push(20)
     }
 
     if(result[i] === "yellow"){
-      leaderBoard.push(10)
+      leaderBoard.push(30)
     }
     if(result[i] === "blue"){
-      leaderBoard.push(10)
+      leaderBoard.push(40)
     }
   }
   score = leaderBoard.reduce((acc, curr)=> acc + curr, 0);
   player1S.innerHTML= `Player one score: ${score}`
+  console.log(leaderBoard2)
 }
 function gameScore2(){
   for(let i = 0; i < result2.length; i++){
     if(result2[i] === "red"){
-      leaderBoard2.push(-20)
+      leaderBoard2.push(10)
     }
     if(result2[i] === "green"){
-      leaderBoard2.push(40)
+      leaderBoard2.push(20)
     }
 
     if(result2[i] === "yellow"){
-      leaderBoard2.push(10)
+      leaderBoard2.push(30)
     }
     if(result2[i] === "blue"){
-      leaderBoard2.push(-15)
+      leaderBoard2.push(40)
     }
   }
   score2 = leaderBoard2.reduce((acc, curr)=> acc + curr, 0);
   players2S.innerHTML = `Player two score: ${score2}`
+  console.log(leaderBoard2)
 }
 function leader(){
   gameScore1()
