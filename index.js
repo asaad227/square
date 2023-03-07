@@ -43,8 +43,8 @@ function submitName1(){
     str = str.replace(/[eE]/gi, "3");
     str = str.replace(/[iI]/gi, "1");
   player2.innerHTML =`Player name2:${str[0].toUpperCase()+str.slice(1)}` ;
-    if(!interId){
-      interId = setInterval(cheeseBoard1, 1000)
+    if(!interId2){
+      interId2 = setInterval(cheeseBoard1, 1000)
     }
 }
 
@@ -54,19 +54,25 @@ function cheeseBoard(){
     let happy = Math.floor(Math.random() * 3);
     const colors = ["red", "yellow", "blue", "green"]
     for (let row = 0; row < 1; row++) {
-      for (let col = 0; col < 1; col++) {
-        square = document.createElement("div");
-        // set the class of the square to indicate its position on the board
-        square.className = `square ${row}-${col}`;
-        // set the background color of the square based on its position
-        if ((row + col) % 2 === 0) {
-          //sending color to the result 
-            result.push(colors[happy])
-          square.style.backgroundColor = colors[happy];
-          square.innerText = `${nameInput.value[0].toUpperCase()}`
-        } 
-          container.appendChild(square); 
-        }
+      if(result.length === 5){
+        clearInterval(interId)
+      }else{
+        for (let col = 0; col < 1; col++) {
+          square = document.createElement("div");
+          // set the class of the square to indicate its position on the board
+          square.className = `square ${row}-${col}`;
+          // set the background color of the square based on its position
+          if ((row + col) % 2 === 0) {
+            //sending color to the result 
+              result.push(colors[happy])
+            square.style.backgroundColor = colors[happy];
+            square.innerText = `${nameInput.value[0].toUpperCase()}`
+          } 
+          console.log(result)
+            container.appendChild(square); 
+          }
+      }
+      
         
       }
     
@@ -79,20 +85,25 @@ function cheeseBoard1(){
     let happy = Math.ceil(Math.random() * 3);
     const colors = ["red", "yellow", "blue", "green"]
     for (let row = 0; row < 1; row++) {
-      for (let col = 0; col < 1; col++) {
-      square = document.createElement("div")
-        // set the class of the square to indicate its position on the board
-        square.className = `square ${row}-${col}`;
-        // set the background color of the square based on its position
-        if ((row + col) % 2 === 0) {
-            result2.push(colors[happy])
-            square.style.backgroundColor = colors[happy];
-          square.innerText = `${nameInput2.value[0].toUpperCase()}`
-        } 
-       
-          container.appendChild(square);
-      
+      if(result2.length === 5){
+        clearInterval(interId2)
+      }else{
+        for (let col = 0; col < 1; col++) {
+          square = document.createElement("div")
+            // set the class of the square to indicate its position on the board
+            square.className = `square ${row}-${col}`;
+            // set the background color of the square based on its position
+            if ((row + col) % 2 === 0) {
+                result2.push(colors[happy])
+                square.style.backgroundColor = colors[happy];
+              square.innerText = `${nameInput2.value[0].toUpperCase()}`
+            } 
+           console.log(result2)
+              container.appendChild(square);
+          
+          }
       }
+      
     }
 
 
@@ -228,17 +239,10 @@ function leader(){
 }
 
 function clear(){
-  
     clearInterval(interId);
     interId = null
-
-
-  
-
     clearInterval(interId2);
     interId2 = null
-
-
 }
 
 function reset(){
@@ -251,8 +255,6 @@ function reset(){
   document.querySelector(".nameInput").value = "";
   document.querySelector(".nameInput2").value = "";
   document.querySelector(".leader").innerHTML = "Winner: ";
-
-
 
 }
 
