@@ -158,12 +158,14 @@ function gameScore2(){
   console.log(leaderBoard2)
 }
 function leader(){
+  var str = nameInput.value;
+  var str2 = nameInput2.value;
   gameScore1()
   gameScore2()
     if(score > score2){
-      playerWin.innerHTML = `Winner: Player1`
+    alert(  playerWin.innerHTML = `Winner: ${str[0].toUpperCase()+str.slice(1)}`)
     }else{
-      playerWin.innerHTML = `Winner: Player2`
+     alert( playerWin.innerHTML = `Winner: ${str2[0].toUpperCase()+str2.slice(1)}`)
     }   
 }
 
