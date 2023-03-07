@@ -7,7 +7,9 @@ const player2 = document.querySelector(".playerName1")
 const player1S = document.querySelector(".item");
 const players2S = document.querySelector(".item1");
 const playerWin = document.querySelector(".leader");
-const round = document.querySelector(".round");
+var round = document.querySelector(".gameRound");
+var roundIn = document.querySelector(".roundInput");
+
 var square;
 var result = []
 var result2 = []
@@ -18,6 +20,10 @@ var score2;
 var interId;
 var interId2;
 
+function roundEnter(){
+  round.innerHTML = `Round: ${roundIn.value}`
+  roundIn.value = ""
+}
 
 
 
@@ -51,10 +57,17 @@ function submitName1(){
 function cheeseBoard(){
     // happy creating random number out of 0 - 3, floor use to round down so can count index
     // 0 to 3
+    let numberOfRound = round.innerHTML;
+  console.log(Number(numberOfRound.slice(7)))
+    if(Number(numberOfRound.slice(7)) === 0){
+      Number(numberOfRound.slice(7)) = 1
+    }else{
+      Number(numberOfRound.slice(7))
+    }
     let happy = Math.floor(Math.random() * 3);
     const colors = ["red", "yellow", "blue", "green"]
     for (let row = 0; row < 1; row++) {
-      if(result.length === 5){
+      if(result.length === Number(numberOfRound.slice(7))){
         clearInterval(interId)
       }else{
         for (let col = 0; col < 1; col++) {
@@ -71,21 +84,23 @@ function cheeseBoard(){
           console.log(result)
             container.appendChild(square); 
           }
+      }      
       }
-      
-        
-      }
-    
-
-
-
 }
 
 function cheeseBoard1(){
+  let numberOfRound = round.innerHTML;
+  console.log(Number(numberOfRound.slice(7)))
+  if(Number(numberOfRound.slice(7)) === 0){
+    Number(numberOfRound.slice(7)) = 1
+  }else{
+    Number(numberOfRound.slice(7))
+  }
+ 
     let happy = Math.ceil(Math.random() * 3);
     const colors = ["red", "yellow", "blue", "green"]
     for (let row = 0; row < 1; row++) {
-      if(result2.length === 5){
+      if(result2.length === Number(numberOfRound.slice(7))){
         clearInterval(interId2)
       }else{
         for (let col = 0; col < 1; col++) {
@@ -238,18 +253,14 @@ function leader(){
    
 }
 
-function clear(){
-    clearInterval(interId);
-    interId = null
-    clearInterval(interId2);
-    interId2 = null
-}
+
 
 function reset(){
   player.innerHTML = "Player name1:";
   player2.innerHTML = "Player name2:";
   player1S.innerHTML= `Player one score: 0`
-  players2S.innerHTML= `Player two score: 0`
+  players2S.innerHTML= `Player two score: 0`;
+  round.innerHTML = "Round: 1"
   leader.innerHTML = "";
   container.innerHTML = "";
   document.querySelector(".nameInput").value = "";
@@ -259,15 +270,14 @@ function reset(){
 }
 
 
-
+const roundBtn = document.querySelector(".roundCount")
 const btn = document.querySelector(".btn");
 const calculateWinner = document.querySelector(".result");
 const submit = document.querySelector(".nameSub");
 const submit2 = document.querySelector(".nameSub2");
 const re = document.querySelector(".reset");
 
-btn.addEventListener("click", clear)
-
+roundBtn.addEventListener("click", roundEnter);
 calculateWinner.addEventListener("click", leader);
 submit.addEventListener("click", submitName )
 submit2.addEventListener("click", submitName1 )
