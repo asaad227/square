@@ -1,3 +1,14 @@
+
+const container = document.getElementById("chessboard");
+const nameInput = document.querySelector(".nameInput");
+const nameInput2 = document.querySelector(".nameInput2")
+const player =  document.querySelector(".playerName");
+const player2 = document.querySelector(".playerName1")
+const player1S = document.querySelector(".item");
+const players2S = document.querySelector(".item1");
+const playerWin = document.querySelector(".leader");
+const round = document.querySelector(".round");
+var square;
 var result = []
 var result2 = []
 var leaderBoard = [];
@@ -7,9 +18,7 @@ var score2;
 var interId;
 var interId2;
 
-const nameInput = document.querySelector(".nameInput");
-const nameInput2 = document.querySelector(".nameInput2")
-const player =  document.querySelector(".playerName");
+
 
 
 function submitName(){
@@ -33,21 +42,20 @@ function submitName1(){
     str = str.replace(/[aA]/gi, "4");
     str = str.replace(/[eE]/gi, "3");
     str = str.replace(/[iI]/gi, "1");
-    document.querySelector(".playerName1").innerHTML =`Player name2:${str[0].toUpperCase()+str.slice(1)}` ;
+  player2.innerHTML =`Player name2:${str[0].toUpperCase()+str.slice(1)}` ;
     if(!interId){
       interId = setInterval(cheeseBoard1, 1000)
     }
 }
 
 function cheeseBoard(){
-    const container = document.getElementById("chessboard");
     // happy creating random number out of 0 - 3, floor use to round down so can count index
     // 0 to 3
     let happy = Math.floor(Math.random() * 3);
     const colors = ["red", "yellow", "blue", "green"]
     for (let row = 0; row < 1; row++) {
       for (let col = 0; col < 1; col++) {
-        const square = document.createElement("div");
+        square = document.createElement("div");
         // set the class of the square to indicate its position on the board
         square.className = `square ${row}-${col}`;
         // set the background color of the square based on its position
@@ -57,21 +65,22 @@ function cheeseBoard(){
           square.style.backgroundColor = colors[happy];
           square.innerText = `${nameInput.value[0].toUpperCase()}`
         } 
-        container.appendChild(square);
+          container.appendChild(square); 
+        }
+        
       }
-    }
+    
 
 
 
 }
 
 function cheeseBoard1(){
-    const container = document.getElementById("chessboard");
     let happy = Math.ceil(Math.random() * 3);
     const colors = ["red", "yellow", "blue", "green"]
     for (let row = 0; row < 1; row++) {
       for (let col = 0; col < 1; col++) {
-        const square = document.createElement("div");
+      square = document.createElement("div")
         // set the class of the square to indicate its position on the board
         square.className = `square ${row}-${col}`;
         // set the background color of the square based on its position
@@ -80,7 +89,9 @@ function cheeseBoard1(){
             square.style.backgroundColor = colors[happy];
           square.innerText = `${nameInput2.value[0].toUpperCase()}`
         } 
-        container.appendChild(square);
+       
+          container.appendChild(square);
+      
       }
     }
 
@@ -175,7 +186,7 @@ function gameScore1(){
     }
   }
   score = leaderBoard.reduce((acc, curr)=> acc + curr, 0);
-  document.querySelector(".win").value = `${score}`
+  player1S.innerHTML= `Player one score: ${score}`
 }
 function gameScore2(){
   for(let i = 0; i < result2.length; i++){
@@ -194,7 +205,7 @@ function gameScore2(){
     }
   }
   score2 = leaderBoard2.reduce((acc, curr)=> acc + curr, 0);
-  document.querySelector(".win2").value = `${score2}`
+  players2S.innerHTML = `Player two score: ${score2}`
 }
 function leader(){
   gameScore1()
@@ -202,25 +213,47 @@ function leader(){
     // winner()
     // winner2()
     if(score > score2){
-      document.querySelector(".leader").innerHTML = `Winner: Player1`
+      playerWin.innerHTML = `Winner: Player1`
     }else{
-      document.querySelector(".leader").innerHTML = `Winner: Player2`
+      playerWin.innerHTML = `Winner: Player2`
     }
-const storedUser = JSON.parse(localStorage.getItem("user1"));
-document.querySelector(".playerName").innerHTML = `Player name1: ${storedUser.name}`;
-document.querySelector(".item").innerHTML = `Player score1: ${storedUser.score}`;
-const storedUser1 = JSON.parse(localStorage.getItem("user2"));
-document.querySelector(".playerName1").innerHTML = `Player name2:${storedUser1.name}`;
-document.querySelector(".item1").innerHTML = `Player score2:${storedUser1.score}`;
+// const storedUser = JSON.parse(localStorage.getItem("user1"));
+// document.querySelector(".playerName").innerHTML = `Player name1: ${storedUser.name}`;
+// document.querySelector(".item").innerHTML = `Player score1: ${storedUser.score}`;
+// const storedUser1 = JSON.parse(localStorage.getItem("user2"));
+// document.querySelector(".playerName1").innerHTML = `Player name2:${storedUser1.name}`;
+// document.querySelector(".item1").innerHTML = `Player score2:${storedUser1.score}`;
 
    
 }
 
 function clear(){
-  clearInterval(interId);
-  interId = null
-  clearInterval(interId2);
-  interId2 = null
+  
+    clearInterval(interId);
+    interId = null
+
+
+  
+
+    clearInterval(interId2);
+    interId2 = null
+
+
+}
+
+function reset(){
+  player.innerHTML = "Player name1:";
+  player2.innerHTML = "Player name2:";
+  player1S.innerHTML= `Player one score: 0`
+  players2S.innerHTML= `Player two score: 0`
+  leader.innerHTML = "";
+  container.innerHTML = "";
+  document.querySelector(".nameInput").value = "";
+  document.querySelector(".nameInput2").value = "";
+  document.querySelector(".leader").innerHTML = "Winner: ";
+
+
+
 }
 
 
@@ -229,9 +262,12 @@ const btn = document.querySelector(".btn");
 const calculateWinner = document.querySelector(".result");
 const submit = document.querySelector(".nameSub");
 const submit2 = document.querySelector(".nameSub2");
+const re = document.querySelector(".reset");
 
 btn.addEventListener("click", clear)
+
 calculateWinner.addEventListener("click", leader);
 submit.addEventListener("click", submitName )
 submit2.addEventListener("click", submitName1 )
+re.addEventListener("click", reset)
 
