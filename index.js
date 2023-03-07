@@ -22,6 +22,8 @@ var interId2;
 function roundEnter(){
   round.innerHTML = `Round: ${roundIn.value}`
   roundIn.value = ""
+  // alert the user to enter there name 
+  alert("Player1 please enter your name!")
 }
 
 function submitName(){
@@ -64,6 +66,8 @@ function cheeseBoard(){
     for (let row = 0; row < 1; row++) {
       if(result.length === Number(numberOfRound.slice(7))){
         clearInterval(interId)
+        // when round finished alert the next player
+        alert("Player 2 enter your name and hit play button!")
       }else{
         for (let col = 0; col < 1; col++) {
           square = document.createElement("div");
@@ -97,6 +101,8 @@ function cheeseBoard1(){
     for (let row = 0; row < 1; row++) {
       if(result2.length === Number(numberOfRound.slice(7))){
         clearInterval(interId2)
+        // as both player completed round so winner function called here
+        leader()
       }else{
         for (let col = 0; col < 1; col++) {
           square = document.createElement("div")
@@ -163,9 +169,9 @@ function leader(){
   gameScore1()
   gameScore2()
     if(score > score2){
-    alert(  playerWin.innerHTML = `Winner: ${str[0].toUpperCase()+str.slice(1)}`)
+    alert(  playerWin.innerHTML = `Congratulation you are the Winner: ${str[0].toUpperCase()+str.slice(1)}`)
     }else{
-     alert( playerWin.innerHTML = `Winner: ${str2[0].toUpperCase()+str2.slice(1)}`)
+     alert( playerWin.innerHTML = `Congratulation you are the Winner: ${str2[0].toUpperCase()+str2.slice(1)}`)
     }   
 }
 
@@ -188,12 +194,10 @@ function reset(){
 
 const roundBtn = document.querySelector(".roundCount")
 const btn = document.querySelector(".btn");
-const calculateWinner = document.querySelector(".result");
 const submit = document.querySelector(".nameSub");
 const submit2 = document.querySelector(".nameSub2");
 const re = document.querySelector(".reset");
 roundBtn.addEventListener("click", roundEnter);
-calculateWinner.addEventListener("click", leader);
 submit.addEventListener("click", submitName )
 submit2.addEventListener("click", submitName1 )
 re.addEventListener("click", reset)
