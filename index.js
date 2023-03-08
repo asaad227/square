@@ -145,7 +145,7 @@ function cheeseBoard1(){
       // sending total of the array score to score2
   score2 = result2.reduce((acc, curr)=> acc + curr,0);
   console.log(score2)
-  players2S.innerHTML= `Player one score: ${score2}`
+  players2S.innerHTML= `Player two score: ${score2}`
     }
  
 }
