@@ -5,7 +5,6 @@ body{
 #chessboard{
     display:grid;
     border: 2px solid gold;
-    margin: 5px;
     width: 300px;
     height: 300px;
     grid-template-columns: repeat(9, 1fr);
@@ -13,16 +12,12 @@ body{
     gap: 1px;
 }
 
-
-.btn-div{
-    display: flex;
-   flex-direction: row;
-  align-items: center;
+.gameInfo{
+    text-align: justify;
+    padding: 5px;
 }
 
-/* .roundInput{
-    width: 50px;
-} */
+
 
 
 

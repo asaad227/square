@@ -21,7 +21,7 @@ var interId2;
 
 function roundEnter(){
   round.innerHTML = `Round: ${roundIn.value}`
-  roundIn.value = ""
+ 
   // alert the user to enter there name 
   alert("Player1 please enter your name and hit play button!")
 }
@@ -66,6 +66,7 @@ function cheeseBoard(){
     for (let row = 0; row < 1; row++) {
       if(result.length === Number(numberOfRound.slice(7))){
         clearInterval(interId)
+        interId = null;
         // when round finished alert the next player
         alert("Player 2 enter your name and hit play button!")
       }else{
@@ -102,6 +103,7 @@ function cheeseBoard1(){
     for (let row = 0; row < 1; row++) {
       if(result2.length === Number(numberOfRound.slice(7))){
         clearInterval(interId2)
+        interId2 = null;
         // as both player completed round so winner function called here
         leader()
       }else{
@@ -189,15 +191,7 @@ function leader(){
 
 
 function reset(){
-  player.innerHTML = "Player name1:";
-  player2.innerHTML = "Player name2:";
-  player1S.innerHTML= `Player one score: 0`
-  players2S.innerHTML= `Player two score: 0`;
-  round.innerHTML = "Round: 1"
-  container.innerHTML = "";
-  document.querySelector(".nameInput").value = "";
-  document.querySelector(".nameInput2").value = "";
-  document.querySelector(".leader").innerHTML = "Winner: ";
+  location.reload();
 
 }
 

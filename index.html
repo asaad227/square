@@ -9,25 +9,32 @@
 </head>
 <body>
   <div>
+    <p class="gameInfo">Random colour square generator and
+      every colour represent below score. If player1
+      score more then player2, player1 is the winner vs versa.
+      <strong>Dont forget to pick your round!!!</strong></p>
         <h3 class="playerName">Player name1: </h3>
         <h3 class="playerName1">Player name2: </h3>
         <h5 class="item">Player one score: 0 </h5>
         <h5 class="item1">Player two score: 0 </h5>
-        <h5 class="leader"></h5>
+        <h5 class="leader">Winner: </h5>
         <h5 class="gameRound">Round: 1 </h5>
         <input class="roundInput" type="number" min="1" placeholder="How many round?"/>
         <button class="roundCount">Submit</button>
-        <h5>Scoring count: Red = [10] Green = [20] Yellow = [30] Blue = [40] </h5>
+        <div>
+          <input type="text" class="nameInput" placeholder="Player name1"/>
+          <button type="submit" class="nameSub">Play</button> 
+        </div>
+        <div>
+          <input type="text" class="nameInput2" placeholder="Player name2"/>
+          <button type="submit" class="nameSub2">Play</button>
+          <h5>Red = [10] Green = [20] Yellow = [30] Blue = [40] </h5>
+        </div>
+      
   
     <div id="chessboard">    
     </div>
-    <div class="btn-div">
-        <button class="reset">Reset</button>
-        <input type="text" class="nameInput" placeholder="Player name1"/>
-        <button type="submit" class="nameSub">Play</button> 
-        <input type="text" class="nameInput2" placeholder="Player name2"/>
-        <button type="submit" class="nameSub2">Play</button>
-    </div>
+      <button class="reset">Reset</button>
   </div>
 
       
