@@ -12,8 +12,6 @@ var roundIn = document.querySelector(".roundInput");
 var square;
 var result = []
 var result2 = []
-var leaderBoard = [];
-var leaderBoard2 = [];
 var score = 0;
 var score2 = 0;
 var interId;
@@ -76,8 +74,17 @@ function cheeseBoard(){
           square.className = `square ${row}-${col}`;
           // set the background color of the square based on its position
           if ((row + col) % 2 === 0) {
-            //sending color to the result 
-            result.push(colors[happy])
+            //sending color point to the result 
+            if(colors[happy] === "red"){
+              result.push(10)
+             }
+             if(colors[happy] === "green"){
+              result.push(20)
+             }if(colors[happy] === "yellow"){
+              result.push(30)
+             }if(colors[happy] === "blue"){
+              result.push(40)
+             }
             square.style.backgroundColor = colors[happy];
             square.innerText = `${nameInput.value[0].toUpperCase()}`
           } 
@@ -86,7 +93,10 @@ function cheeseBoard(){
           }
       }      
       }
-  
+      // counting total and sending to score array
+      score = result.reduce((acc, curr)=> acc + curr,0);
+      console.log(score)
+      player1S.innerHTML= `Player one score: ${score}`
 }
 
 function cheeseBoard1(){
@@ -113,7 +123,17 @@ function cheeseBoard1(){
             square.className = `square ${row}-${col}`;
             // set the background color of the square based on its position
             if ((row + col) % 2 === 0) {
-                result2.push(colors[happy])
+              //sending colour point to the result2 array 
+              if(colors[happy] === "red"){
+                result2.push(10)
+               }
+               if(colors[happy] === "green"){
+                result2.push(20)
+               }if(colors[happy] === "yellow"){
+                result2.push(30)
+               }if(colors[happy] === "blue"){
+                result2.push(40)
+               }
                 square.style.backgroundColor = colors[happy];
               square.innerText = `${nameInput2.value[0].toUpperCase()}`
             } 
@@ -122,60 +142,19 @@ function cheeseBoard1(){
           
           }
       }
-      
+      // sending total of the array score to score2
+  score2 = result2.reduce((acc, curr)=> acc + curr,0);
+  console.log(score2)
+  players2S.innerHTML= `Player one score: ${score2}`
     }
  
 }
 
-function gameScore1(){
-  const red = "red";
-  const green = "green";
-  const yellow = "yellow";
-  const blue = "blue";
-  for(let i = 0; i < result.length; i++){
-    if(result[i] === red){
-      leaderBoard.push(10)
-    }
-    if(result[i] === green){
-      leaderBoard.push(20)
-    }
 
-    if(result[i] === yellow){
-      leaderBoard.push(30)
-    }
-    if(result[i] === blue){
-      leaderBoard.push(40)
-    }
-  }
-  score = leaderBoard.reduce((acc, curr)=> acc + curr,0);
-  console.log(score)
-  player1S.innerHTML= `Player one score: ${score}`
-}
-function gameScore2(){
-  for(let i = 0; i < result.length; i++){
-    if(result2[i] === "red"){
-      leaderBoard2.push(10)
-    }
-    if(result2[i] === "green"){
-      leaderBoard2.push(20)
-    }
-
-    if(result2[i] === "yellow"){
-      leaderBoard2.push(30)
-    }
-    if(result2[i] === "blue"){
-      leaderBoard2.push(40)
-    }
-  }
-  score2 = leaderBoard2.reduce((acc, curr)=> acc + curr,0);
-  players2S.innerHTML= `Player two score: ${score2}`
-  console.log(leaderBoard2)
-}
 function leader(){
   var str = nameInput.value;
   var str2 = nameInput2.value;
-  gameScore1()
-  gameScore2()
+  // compare the two player score and decide the winner 
     if(score > score2){
     alert(  playerWin.innerHTML = `Congratulation you are the Winner 🏆: ${str[0].toUpperCase()+str.slice(1)}`)
     }
@@ -191,11 +170,12 @@ function leader(){
 
 
 function reset(){
+  // this function reset the game 
   location.reload();
 
 }
 
-
+// all these button control the event
 const roundBtn = document.querySelector(".roundCount")
 const btn = document.querySelector(".btn");
 const submit = document.querySelector(".nameSub");
